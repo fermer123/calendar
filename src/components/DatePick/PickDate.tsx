@@ -20,6 +20,8 @@ const getDaysAmountInAMonth = (year: number, month: number) => {
   return nextMonthDate.getDate();
 };
 
+const daysOfTheWeek = ['Mon', 'Thu', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
 const getPreviousMonthDays = (year: number, month: number) => {
   const dateCells: DateCellItem[] = [];
   const currentMonthFirstDay = new Date(year, month, 1);
@@ -91,13 +93,8 @@ const PickDate: FC<PickDateProps> = ({value, onChange}) => {
     );
     const prevMonthDays = getPreviousMonthDays(panelYear, panelMonth);
     const nextMonthDays = getNextMonthDays(panelYear, panelMonth);
-    return [...prevMonthDays, ...nextMonthDays, ...currentMonthDays];
+    return [...prevMonthDays, ...currentMonthDays, ...nextMonthDays];
   }, [panelYear, panelMonth]);
-
-  const nextYear = () => {};
-  const prevYear = () => {};
-  const nextMonth = () => {};
-  const prevMonth = () => {};
 
   return (
     <div className={style.calendar}>
@@ -105,8 +102,11 @@ const PickDate: FC<PickDateProps> = ({value, onChange}) => {
         Date: {day} {month} {year}
       </div>
       <div className={style.cells}>
+        {daysOfTheWeek.map((e) => (
+          <div className={style.cell}>{e}</div>
+        ))}
         {dateCells.map((e) => (
-          <div>{e.day}</div>
+          <div className={style.cell}>{e.day}</div>
         ))}
       </div>
     </div>

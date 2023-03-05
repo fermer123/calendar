@@ -5,5 +5,9 @@
     height: 700px;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat();
+    gap: 1px;
+    .cell {
+      background-color: white;
+    }
   }
 }
